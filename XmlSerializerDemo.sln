@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlSerializerDemo", "XmlSerializerDemo\XmlSerializerDemo.csproj", "{0CD7473C-7B2D-4B42-BE1B-3EF3F0A7BBAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlSerializerDemoTests", "XmlSerializerDemoTests\XmlSerializerDemoTests.csproj", "{2ADD2C23-6B0E-4AFE-9B63-526EB69E288E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CD7473C-7B2D-4B42-BE1B-3EF3F0A7BBAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CD7473C-7B2D-4B42-BE1B-3EF3F0A7BBAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CD7473C-7B2D-4B42-BE1B-3EF3F0A7BBAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CD7473C-7B2D-4B42-BE1B-3EF3F0A7BBAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ADD2C23-6B0E-4AFE-9B63-526EB69E288E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ADD2C23-6B0E-4AFE-9B63-526EB69E288E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ADD2C23-6B0E-4AFE-9B63-526EB69E288E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ADD2C23-6B0E-4AFE-9B63-526EB69E288E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
