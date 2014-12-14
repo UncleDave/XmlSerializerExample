@@ -9,8 +9,20 @@ namespace XmlSerializerDemoTests
     [TestClass]
     public class VersionInfoTests
     {
+        // Tests will break when filePath is changed because I'm lazy.
+        // Any project using this won't really need the tests anyway.
+
         [TestInitialize]
         public void Initialize()
+        {
+            if (File.Exists("versions.xml"))
+            {
+                File.Delete("versions.xml");
+            }
+        }
+
+        [TestCleanup]
+        public void Cleanup()
         {
             if (File.Exists("versions.xml"))
             {
@@ -40,7 +52,8 @@ namespace XmlSerializerDemoTests
         [TestMethod]
         public void SaveShouldCreateNewFileWhenNonExists()
         {
-            VersionInfo.Load();
+            // Static initializers aren't triggered until the class is needed.
+            string trash = VersionInfo.ModVersion;
 
             using (XmlReader reader = XmlReader.Create("versions.xml"))
             {

@@ -9,11 +9,14 @@ namespace XmlSerializerDemo
     public class VersionInfo
     {
         // The values are stored inside _instance and setters automatically save the XML when a value is changed.
+        // Getters load the file every time, this may not be desirable in some cases, especially with large files.
+        // In that case make Load and Save Public.
 
         public static Version LauncherVersion
         {
             get
             {
+                Load();
                 return Version.Parse(_instance.SLauncherVersion);
             }
             set
@@ -26,6 +29,7 @@ namespace XmlSerializerDemo
         {
             get
             {
+                Load();
                 return _instance.SModVersion;
             }
             set
@@ -41,10 +45,10 @@ namespace XmlSerializerDemo
 
         static VersionInfo()
         {
-            Load();
+            EnsureFileExists();
         }
 
-        public static void Load()
+        private static void EnsureFileExists()
         {
             if (!File.Exists(filePath))
             {
@@ -55,6 +59,11 @@ namespace XmlSerializerDemo
                 LauncherVersion = new Version("1.0.0.0");
                 ModVersion = "1.0";
             }
+        }
+
+        private static void Load()
+        {
+            EnsureFileExists();
 
             using (XmlReader reader = XmlReader.Create(filePath))
             {
@@ -71,7 +80,7 @@ namespace XmlSerializerDemo
             }
         }
 
-        public static void Save()
+        private static void Save()
         {
             using (XmlWriter writer = XmlWriter.Create(filePath))
             {
