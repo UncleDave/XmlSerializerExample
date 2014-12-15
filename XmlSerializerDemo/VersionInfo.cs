@@ -74,9 +74,6 @@ namespace XmlSerializerDemo
 
                 _instance = (VersionInfo)serializer.Deserialize(reader);
                 reader.Close();
-
-                LauncherVersion = Version.Parse(_instance.SLauncherVersion);
-                ModVersion = _instance.SModVersion;
             }
         }
 
