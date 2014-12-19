@@ -14,25 +14,15 @@ namespace XmlSerializerDemoTests
         [TestInitialize]
         public void Initialize()
         {
-            if (File.Exists(filePath))
-            {
-                File.Delete(filePath);
-            }
-        }
-
-        [TestCleanup]
-        public void Cleanup()
-        {
-            if (File.Exists(filePath))
-            {
-                File.Delete(filePath);
-            }
+            DeleteFileIfExists();
+            SetDefaults();
         }
 
         [TestMethod]
         public void LoadTest()
         {
             WriteTestFile();
+            Settings.Load();
 
             Assert.AreEqual("2.0.0.0", Settings.LauncherVersion.ToString());
             Assert.AreEqual("2.5", Settings.ModVersion);
@@ -41,8 +31,8 @@ namespace XmlSerializerDemoTests
         [TestMethod]
         public void SaveShouldCreateNewFileWhenNonExists()
         {
-            // Static initializers aren't triggered until the class is needed.
-            string trash = Settings.ModVersion;
+            Settings.Save();
+            Settings.Load();
 
             using (XmlReader reader = XmlReader.Create(filePath))
             {
@@ -60,6 +50,7 @@ namespace XmlSerializerDemoTests
         {
             Settings.LauncherVersion = Version.Parse("5.0.0.5");
             Settings.ModVersion = "Bagels";
+            Settings.Save();
 
             using (XmlReader reader = XmlReader.Create(filePath))
             {
@@ -76,6 +67,7 @@ namespace XmlSerializerDemoTests
         public void LoadShouldDealWithOutOfDateFile()
         {
             WriteMalformedTestFile();
+            Settings.Load();
 
             Assert.AreEqual("1.0", Settings.ModVersion);
         }
@@ -107,6 +99,20 @@ namespace XmlSerializerDemoTests
 
                 writer.Close();
             }
+        }
+
+        private void DeleteFileIfExists()
+        {
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+        }
+
+        private void SetDefaults()
+        {
+            Settings.LauncherVersion = new Version("1.0.0.0");
+            Settings.ModVersion = "1.0";
         }
     }
 }

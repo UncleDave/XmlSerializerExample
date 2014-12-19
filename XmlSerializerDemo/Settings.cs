@@ -8,32 +8,26 @@ namespace XmlSerializerDemo
     [XmlRoot("Settings")]
     public class Settings
     {
-        // The values are stored inside _instance and setters automatically save the XML when a value is changed.
-        // Getters load the file every time, this may not be desirable in some cases, especially with large files.
         public static Version LauncherVersion
         {
             get
             {
-                Load();
                 return new Version(_instance.SLauncherVersion);
             }
             set
             {
                 _instance.SLauncherVersion = value.ToString();
-                Save();
             }
         }
         public static string ModVersion
         {
             get
             {
-                Load();
                 return _instance.SModVersion;
             }
             set
             {
                 _instance.SModVersion = value;
-                Save();
             }
         }
 
@@ -104,7 +98,7 @@ namespace XmlSerializerDemo
             // Always check the instance's properties rather than the static properties.
         }
 
-        private static void Load()
+        public static void Load()
         {
             EnsureFileExists();
 
@@ -122,7 +116,7 @@ namespace XmlSerializerDemo
             Validate();
         }
 
-        private static void Save()
+        public static void Save()
         {
             using (XmlWriter writer = XmlWriter.Create(filePath))
             {
