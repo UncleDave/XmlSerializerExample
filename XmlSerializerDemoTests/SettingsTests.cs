@@ -32,7 +32,6 @@ namespace XmlSerializerDemoTests
         public void SaveShouldCreateNewFileWhenNonExists()
         {
             Settings.Save();
-            Settings.Load();
 
             using (XmlReader reader = XmlReader.Create(filePath))
             {

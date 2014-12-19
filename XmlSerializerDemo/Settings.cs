@@ -49,12 +49,12 @@ namespace XmlSerializerDemo
         //}
 
         private static Settings _instance = new Settings();
-        private static string filePath = "settings.xml";
-        private static XmlSerializer serializer = new XmlSerializer(typeof(Settings));
+        private const string filePath = "settings.xml";
+        private static readonly XmlSerializer serializer = new XmlSerializer(typeof(Settings));
 
         // Defaults
-        private static Version defaultLauncherVersion = new Version("1.0.0.0");
-        private static string defaultModVersion = "1.0";
+        private static readonly Version defaultLauncherVersion = new Version("1.0.0.0");
+        private const string defaultModVersion = "1.0";
         //private static string defaultYourNewProperty = "Hello";
 
         static Settings()
